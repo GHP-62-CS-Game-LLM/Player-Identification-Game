@@ -1,3 +1,4 @@
+using System;
 using Chat;
 using Interactions;
 using Unity.Netcode;
@@ -8,7 +9,34 @@ using Random = UnityEngine.Random;
 
 public class PlayerController : NetworkBehaviour, IGameCharacter
 {
-    public GameCharacterType Type { get; set; } = GameCharacterType.Seeker;
+    private GameCharacterType _type;
+    public GameCharacterType Type
+    {
+        get => _type;
+        set
+        {
+            switch (value)
+            {
+            case GameCharacterType.Seeker:
+                HiderObj.SetActive(false);
+                SeekerObj.SetActive(true);
+
+                break;
+            case GameCharacterType.Hider:
+                HiderObj.SetActive(true);
+                SeekerObj.SetActive(false);
+
+                break;
+            case GameCharacterType.Npc:
+                break;
+            }
+            
+            _type = value;
+        }
+    }
+
+    public GameObject SeekerObj;
+    public GameObject HiderObj;
 
     private Camera _camera;
     
@@ -38,6 +66,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
 
         if (_gameManager.players.Count >= 1)
             Type = GameCharacterType.Hider;
+        else Type = GameCharacterType.Seeker;
         
         _gameManager.players.Add(this);
         
