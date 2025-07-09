@@ -26,7 +26,7 @@ public class GameManager : NetworkBehaviour
     [CanBeNull]
     private IInteraction _interaction;
     private string _message = string.Empty;
-    private string _hostAddress = "127.0.0.1:7777";
+    private string _hostAddress = "127.0.0.1";
     
 
     private void Awake()
@@ -100,9 +100,8 @@ public class GameManager : NetworkBehaviour
 
         if (GUILayout.Button("Client"))
         {
-            Uri host = new(_hostAddress);
-            print($"Host: {host.Host}, Port: {host.Port}");
-            GetComponent<UnityTransport>().SetConnectionData(host.Host, (ushort)host.Port);
+            print($"HostAddress: {_hostAddress}");
+            GetComponent<UnityTransport>().SetConnectionData(_hostAddress, 7777);
             _networkManager.StartClient();
         }
         if (GUILayout.Button("Server")) _networkManager.StartServer();
