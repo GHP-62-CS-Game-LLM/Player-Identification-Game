@@ -9,7 +9,7 @@ namespace Chat
 {
     public class ChatManager : MonoBehaviour
     {
-        public string host = "https://c3da-209-166-98-68.ngrok-free.app";
+        public string host = "http://127.0.0.1:11434";
         //public string local = "http://127.0.0.1:11434";
         
         public SceneContextManager scm;
@@ -34,6 +34,6 @@ namespace Chat
             return sb.ToString();
         }
 
-        public Conversation MakeConversation(string context) => new Conversation(_ollama, context, () => scm.GetDynamicContext());
+        public Conversation MakeConversation(string context) => new(_ollama, context, () => scm.GetDynamicContext());
     }
 }

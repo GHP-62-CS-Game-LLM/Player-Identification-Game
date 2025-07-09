@@ -1,3 +1,5 @@
+using Unity.Netcode;
+
 public interface IGameCharacter
 {
     public GameCharacterType Type { get; }

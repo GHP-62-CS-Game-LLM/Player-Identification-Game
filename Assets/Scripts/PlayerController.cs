@@ -19,7 +19,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
     private InputAction _interactAction;
     
     private GameManager _gameManager;
-    private ChatManager _chatManager;
+    //private ChatManager _chatManager;
     
     void Awake()
     {
@@ -27,7 +27,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
         _interactAction = InputSystem.actions.FindAction("Interact");
         
         _gameManager = FindAnyObjectByType<GameManager>();
-        _chatManager = _gameManager.chatManager;
+        //_chatManager = _gameManager.chatManager;
 
         _camera = FindAnyObjectByType<Camera>();
     }
@@ -54,7 +54,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
     private void Update()
     {
         if (!IsOwner) return;
-        if (_gameManager.IsInteracting) return;
+        if (_gameManager.isInteracting.Value) return;
             
         Vector2 moveValue = _moveAction.ReadValue<Vector2>() * (moveSpeed * Time.deltaTime);
 
@@ -67,7 +67,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
 
             if (hit.collider.CompareTag("Interactable"))
             {
-                _gameManager.StartInteraction(this, hit.transform.gameObject.GetComponent<IGameCharacter>());
+                _gameManager.StartInteractionRpc(hit.transform.gameObject.GetComponent<IGameCharacter>().Type);
             }
         }
     }

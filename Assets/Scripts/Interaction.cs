@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Chat;
+using UnityEngine;
 
 namespace Interactions
 {
@@ -42,14 +44,21 @@ namespace Interactions
 
         public async void AddMessage(Message message)
         {
+            Debug.Log("PlayerNpc Interaction");
             _messages.Add(message);
             
-            if (message.Reciever == GameCharacterType.Npc) {
+            // Generate and add response
+            if (message.Reciever == GameCharacterType.Npc)
+            {
+                string response = await _conversation.Message(message.Content);
+                Debug.Log("Waiting");
+                Debug.Log($"Result:\n{response}");
+                
                 _messages.Add(new Message 
                 {
                     Sender = GameCharacterType.Npc,
                     Reciever = GameCharacterType.Seeker,
-                    Content = await _conversation.Message(message.Content)
+                    Content = response
                 });
             }
         }

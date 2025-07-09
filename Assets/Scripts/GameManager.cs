@@ -3,30 +3,35 @@ using System.Collections.Generic;
 using Chat;
 using Interactions;
 using JetBrains.Annotations;
+using Unity.Collections;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
+using Unity.Properties;
 using UnityEngine;
 
-[RequireComponent(typeof(NetworkManager))]
 [RequireComponent(typeof(ChatManager))]
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
-    public bool IsInteracting { get; set; }
+    [ReadOnly]
+    public NetworkVariable<bool> isInteracting;
     
     public List<PlayerController> players = new();
 
+    [HideInInspector]
     public ChatManager chatManager;
-    
+
     private NetworkManager _networkManager;
 
     [CanBeNull]
     private IInteraction _interaction;
     private string _message = string.Empty;
+    private string _hostAddress = "127.0.0.1:7777";
     
 
     private void Awake()
     {
-        _networkManager = GetComponent<NetworkManager>();
+        _networkManager = FindAnyObjectByType<NetworkManager>();
         chatManager = GetComponent<ChatManager>();
     }
 
@@ -68,18 +73,38 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void StartInteraction(IGameCharacter seeker, IGameCharacter other)
+    [Rpc(SendTo.Server)]
+    public void StartInteractionRpc(GameCharacterType other)
     {
-        _interaction = other.Type == GameCharacterType.Hider ? new PlayerPlayerInteraction() : new PlayerNpcInteraction(chatManager.MakeConversation(((NpcController)other).GetContext()));
-        IsInteracting = true;
+        print("Testing Interaction");
+        _interaction = other == GameCharacterType.Hider ? 
+            new PlayerPlayerInteraction() : 
+            new PlayerNpcInteraction(chatManager.MakeConversation(string.Empty));
+        isInteracting.Value = true;
+        
+        _interaction.AddMessage(new Message
+        {
+            Sender = GameCharacterType.Seeker,
+            Reciever = GameCharacterType.Npc,
+            Content = "Hello, how are you?"
+        });
 
         // TODO: good UI
     }
 
     private void DisplayConnectionButtons()
     {
+        _hostAddress = GUILayout.TextField(_hostAddress);
+        
         if (GUILayout.Button("Host")) _networkManager.StartHost();
-        if (GUILayout.Button("Client")) _networkManager.StartClient();
+
+        if (GUILayout.Button("Client"))
+        {
+            Uri host = new(_hostAddress);
+            print($"Host: {host.Host}, Port: {host.Port}");
+            GetComponent<UnityTransport>().SetConnectionData(host.Host, (ushort)host.Port);
+            _networkManager.StartClient();
+        }
         if (GUILayout.Button("Server")) _networkManager.StartServer();
     }
 
@@ -94,7 +119,7 @@ public class GameManager : MonoBehaviour
 
         if (GUILayout.Button("Test Interaction"))
         {
-            if (players.Count >= 2) StartInteraction(players[0], players[1]);
+            StartInteractionRpc(GameCharacterType.Npc);
         }
     } 
 }
