@@ -101,7 +101,7 @@ public class GameManager : NetworkBehaviour
         if (GUILayout.Button("Client"))
         {
             print($"HostAddress: {_hostAddress}");
-            GetComponent<UnityTransport>().SetConnectionData(_hostAddress, 7777);
+            _networkManager.GetComponent<UnityTransport>().SetConnectionData(_hostAddress, 7777);
             _networkManager.StartClient();
         }
         if (GUILayout.Button("Server")) _networkManager.StartServer();
