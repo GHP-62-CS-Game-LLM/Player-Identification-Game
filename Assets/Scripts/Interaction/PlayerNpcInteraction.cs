@@ -26,13 +26,12 @@ namespace Interaction
             Npc = npc;
         }
 
-        public async void AddMessage(Message message)
+        public async void AddMessage(Message message, bool autoGenerateResponse = false)
         {
-            Debug.Log("PlayerNpc Interaction");
             Messages.Add(message);
 
             // Generate and add response
-            if (message.Receiver == GameCharacterType.Npc)
+            if (autoGenerateResponse && message.Receiver == GameCharacterType.Npc)
             {
                 string response = await _conversation.Message(message.Content);
                 Debug.Log("Waiting");
@@ -47,8 +46,8 @@ namespace Interaction
             }
         }
 
-        public void AddMessage(string message) =>
-            AddMessage(new Message { Sender = Player.Type, Receiver = Npc.Type, Content = message });
+        public void AddMessage(string message, bool autoGenerateResponse = false) =>
+           AddMessage(new Message { Sender = Player.Type, Receiver = Npc.Type, Content = message }, autoGenerateResponse);
 
         public List<Message> GetAllMessages() => Messages;
 

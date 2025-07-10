@@ -23,9 +23,9 @@ namespace Interaction
             Receiver = receiver;
         }
     
-        public void AddMessage(Message message) => Messages.Add(message);
+        public void AddMessage(Message message, bool autoGenerateResponse = false) => Messages.Add(message);
 
-        public void AddMessage(string message) =>
+        public void AddMessage(string message, bool autoGenerateResponse = false) =>
             AddMessage(new Message { Sender = Sender.Type, Receiver = Receiver.Type, Content = message });
 
         public List<Message> GetAllMessages() => Messages;

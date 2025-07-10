@@ -20,12 +20,15 @@ namespace Interaction
         public PlayerController LocalPlayer => _gameManager.localPlayer;
         
         private int _currentInteractionIndex;
+        // Sorry..
         [CanBeNull] public IInteraction CurrentInteraction => _currentInteractionIndex < _interactions.Value.Count
-            ? _interactions.Value[_currentInteractionIndex].ToPlayerPlayerInteraction()
+            ? _interactions.Value[_currentInteractionIndex].ToInteraction()
             : null;
 
         public int Len => _interactions.Value.Count;
         private NetworkVariable<List<SerializableInteraction>> _interactions = new(new List<SerializableInteraction>());
+
+        public List<Conversation> Conversations = new();
 
         private bool _shouldCreateInteraction;
         private int _createInteractionInFrames = -1;
@@ -42,16 +45,16 @@ namespace Interaction
         {
             if (!IsInteracting) return;
 
-            PlayerPlayerInteraction interaction = _interactions.Value[_currentInteractionIndex].ToPlayerPlayerInteraction();
+            IInteraction interaction = _interactions.Value[_currentInteractionIndex].ToInteraction();
             RemoveInteractionAtRpc(_currentInteractionIndex);
             if (LocalPlayer.Type == GameCharacterType.Seeker)
             {
                 interaction.AddMessage(new Message
                 {
                     Sender = GameCharacterType.Seeker,
-                    Receiver = GameCharacterType.Hider,
+                    Receiver = interaction.Type == InteractionType.PlayerPlayer ? GameCharacterType.Hider : GameCharacterType.Npc,
                     Content = message
-                });
+                }, true);
             }
             else if (LocalPlayer.Type == GameCharacterType.Hider)
             {
@@ -80,8 +83,10 @@ namespace Interaction
                 Assert.IsTrue(sender.GetType() == typeof(PlayerController));
                 Assert.IsTrue(receiver.GetType() == typeof(NpcController));
                 
+                Conversations.Add(_chatManager.MakeConversation(string.Empty));
+                
                  _interactions.Value.Add(new PlayerNpcInteraction(
-                    _chatManager.MakeConversation(string.Empty),
+                    Conversations[^1],
                     sender as PlayerController, 
                     receiver as NpcController
                 ).GetSerializable());

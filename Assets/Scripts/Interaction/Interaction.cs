@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.Netcode;
+using UnityEngine.Assertions;
 using UnityEngine.UIElements;
 
 namespace Interaction
@@ -45,8 +46,8 @@ namespace Interaction
     {
         public InteractionType Type { get; }
         
-        public void AddMessage(Message message);
-        public void AddMessage(string message);
+        public void AddMessage(Message message, bool autoGenerateResponse = false);
+        public void AddMessage(string message, bool autoGenerateResponse = false);
 
         public List<Message> GetAllMessages();
 
@@ -57,6 +58,8 @@ namespace Interaction
     {
         public static PlayerPlayerInteraction ToPlayerPlayerInteraction(SerializableInteraction serializable)
         {
+            Assert.IsTrue(serializable.Type == InteractionType.PlayerPlayer);
+            
             PlayerPlayerInteraction interaction = new(
                 (PlayerController)GameManager.Instance.characters[serializable.SenderIndex],
                 (PlayerController)GameManager.Instance.characters[serializable.ReceiverIndex]);
@@ -66,7 +69,29 @@ namespace Interaction
             return interaction;
         }
 
+        public static PlayerNpcInteraction ToPlayerNpcInteraction(SerializableInteraction serializable)
+        {
+            Assert.IsTrue(serializable.Type == InteractionType.PlayerNpc);
+
+            PlayerNpcInteraction interaction = new(
+                GameManager.Instance.interactionManager.Conversations[serializable.ConversationIndex],
+                (PlayerController)GameManager.Instance.characters[serializable.SenderIndex],
+                (NpcController)GameManager.Instance.characters[serializable.ReceiverIndex]
+            );
+            
+            foreach (Message message in serializable.Messages) interaction.AddMessage(message);
+
+            return interaction;
+        }
+
+        public static IInteraction ToInteraction(SerializableInteraction serializable) =>
+            serializable.Type == InteractionType.PlayerPlayer
+                ? ToPlayerPlayerInteraction(serializable)
+                : ToPlayerNpcInteraction(serializable);
+
         public PlayerPlayerInteraction ToPlayerPlayerInteraction() => ToPlayerPlayerInteraction(this);
+        public PlayerNpcInteraction ToPlayerNpcInteraction() => ToPlayerNpcInteraction(this);
+        public IInteraction ToInteraction() => ToInteraction(this);
 
         //public static PlayerNpcInteraction ToPlayerNpcInteraction(SerializableInteraction interaction) => new();
         
@@ -74,6 +99,8 @@ namespace Interaction
         public int SenderIndex { get; set; }
         public int ReceiverIndex { get; set; }
         public Message[] Messages { get; set; }
+        
+        public int ConversationIndex { get; set; }
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
@@ -83,6 +110,7 @@ namespace Interaction
                 serializer.GetFastBufferWriter().WriteValueSafe(SenderIndex);
                 serializer.GetFastBufferWriter().WriteValueSafe(ReceiverIndex);
                 serializer.GetFastBufferWriter().WriteValueSafe(Messages.Length);
+                if (Type == InteractionType.PlayerNpc) serializer.GetFastBufferWriter().WriteValueSafe(ConversationIndex);
                 foreach (Message message in Messages) 
                     serializer.GetFastBufferWriter().WriteValueSafe(message);
             }
@@ -92,9 +120,11 @@ namespace Interaction
                 serializer.GetFastBufferReader().ReadValueSafe(out int senderIndex);
                 serializer.GetFastBufferReader().ReadValueSafe(out int receiverIndex);
                 serializer.GetFastBufferReader().ReadValueSafe(out int messagesCount);
+                if (type == InteractionType.PlayerNpc) serializer.GetFastBufferReader().ReadValueSafe(out int conversationIndex);
                 Type = type;
                 SenderIndex = senderIndex;
                 ReceiverIndex = receiverIndex;
+                ConversationIndex = ConversationIndex;
 
                 Messages = new Message[messagesCount];
 
