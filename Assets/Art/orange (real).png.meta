@@ -1,0 +1,975 @@
+fileFormatVersion: 2
+guid: c163943699accd949861ee3c56e10f48
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5552376763192871310
+    second: orange (real)_0
+  - first:
+      213: -472228908536897489
+    second: orange (real)_1
+  - first:
+      213: -7093583462565538646
+    second: orange (real)_2
+  - first:
+      213: -268290771991174594
+    second: orange (real)_3
+  - first:
+      213: 4676993705602473512
+    second: orange (real)_4
+  - first:
+      213: -8053470482616152715
+    second: orange (real)_5
+  - first:
+      213: 2014241161919589581
+    second: orange (real)_6
+  - first:
+      213: 2988407518329788105
+    second: orange (real)_7
+  - first:
+      213: -2246847384187390647
+    second: orange (real)_8
+  - first:
+      213: -6412660091440019750
+    second: orange (real)_9
+  - first:
+      213: -2399693751481134946
+    second: orange (real)_10
+  - first:
+      213: 6255073932895186894
+    second: orange (real)_11
+  - first:
+      213: -6051201042832869980
+    second: orange (real)_12
+  - first:
+      213: -214633636595461147
+    second: orange (real)_13
+  - first:
+      213: -7226921747565973597
+    second: orange (real)_14
+  - first:
+      213: 6351100684709677728
+    second: orange (real)_15
+  - first:
+      213: -1541643133638413637
+    second: orange (real)_16
+  - first:
+      213: -7034575625896780891
+    second: orange (real)_17
+  - first:
+      213: 1923921955131109771
+    second: orange (real)_18
+  - first:
+      213: -1593750225653790465
+    second: orange (real)_19
+  - first:
+      213: -8559510918928383407
+    second: orange (real)_20
+  - first:
+      213: 4191010118265611730
+    second: orange (real)_21
+  - first:
+      213: 399771116207859836
+    second: orange (real)_22
+  - first:
+      213: -7817829396723060829
+    second: orange (real)_23
+  - first:
+      213: 6248816811261711381
+    second: orange (real)_24
+  - first:
+      213: -7814715248141291432
+    second: orange (real)_25
+  - first:
+      213: -780287194503592231
+    second: orange (real)_26
+  - first:
+      213: 9132834686990785934
+    second: orange (real)_27
+  - first:
+      213: -6413098183178031917
+    second: orange (real)_28
+  - first:
+      213: -3113993197566500134
+    second: orange (real)_29
+  - first:
+      213: 2677029041889957343
+    second: orange (real)_30
+  - first:
+      213: -8622328174910043999
+    second: orange (real)_31
+  - first:
+      213: 5371306226946332303
+    second: orange (real)_32
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: orange (real)_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 7865
+        width: 974
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27671ca60cef1f2b0800000000000000
+      internalID: -5552376763192871310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_1
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 7865
+        width: 983
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f20ecf54f4e4279f0800000000000000
+      internalID: -472228908536897489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_2
+      rect:
+        serializedVersion: 2
+        x: 2438
+        y: 7865
+        width: 983
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa412399c678e8d90800000000000000
+      internalID: -7093583462565538646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_3
+      rect:
+        serializedVersion: 2
+        x: 3914
+        y: 7865
+        width: 983
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3263fed6f6d64cf0800000000000000
+      internalID: -268290771991174594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_4
+      rect:
+        serializedVersion: 2
+        x: 5102
+        y: 7865
+        width: 983
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82e5c27def408e040800000000000000
+      internalID: 4676993705602473512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_5
+      rect:
+        serializedVersion: 2
+        x: 6308
+        y: 7865
+        width: 983
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57d0292e3435c3090800000000000000
+      internalID: -8053470482616152715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_6
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 6263
+        width: 983
+        height: 1487
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dccef243aa504fb10800000000000000
+      internalID: 2014241161919589581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_7
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 6263
+        width: 983
+        height: 1487
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c6572efdc4f87920800000000000000
+      internalID: 2988407518329788105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_8
+      rect:
+        serializedVersion: 2
+        x: 2483
+        y: 6263
+        width: 983
+        height: 1487
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 945bef8553891d0e0800000000000000
+      internalID: -2246847384187390647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_9
+      rect:
+        serializedVersion: 2
+        x: 3959
+        y: 6263
+        width: 974
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad6c4606f97a107a0800000000000000
+      internalID: -6412660091440019750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_10
+      rect:
+        serializedVersion: 2
+        x: 5156
+        y: 6263
+        width: 983
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e901e354f3392bed0800000000000000
+      internalID: -2399693751481134946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_11
+      rect:
+        serializedVersion: 2
+        x: 6353
+        y: 6263
+        width: 983
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecfe506e99c7ec650800000000000000
+      internalID: 6255073932895186894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_12
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 4787
+        width: 983
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a5397156b0d50ca0800000000000000
+      internalID: -6051201042832869980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_13
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 4787
+        width: 983
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e390ed38d7750df0800000000000000
+      internalID: -214633636595461147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_14
+      rect:
+        serializedVersion: 2
+        x: 2483
+        y: 4787
+        width: 983
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3afe8c0e5f0d4bb90800000000000000
+      internalID: -7226921747565973597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_15
+      rect:
+        serializedVersion: 2
+        x: 3959
+        y: 4787
+        width: 974
+        height: 1298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0aa4cd45c64a32850800000000000000
+      internalID: 6351100684709677728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_16
+      rect:
+        serializedVersion: 2
+        x: 5156
+        y: 4787
+        width: 983
+        height: 1298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2ff09ecbbfa9ae0800000000000000
+      internalID: -1541643133638413637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_17
+      rect:
+        serializedVersion: 2
+        x: 6353
+        y: 4787
+        width: 983
+        height: 1298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ab1dc03dba206e90800000000000000
+      internalID: -7034575625896780891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_18
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 3257
+        width: 983
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b813a2723d423ba10800000000000000
+      internalID: 1923921955131109771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_19
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 3257
+        width: 983
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff805332d9cd1e9e0800000000000000
+      internalID: -1593750225653790465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_20
+      rect:
+        serializedVersion: 2
+        x: 2528
+        y: 3257
+        width: 983
+        height: 1307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15242326b22863980800000000000000
+      internalID: -8559510918928383407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_21
+      rect:
+        serializedVersion: 2
+        x: 3995
+        y: 3176
+        width: 983
+        height: 1532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d52a456f75792a30800000000000000
+      internalID: 4191010118265611730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_22
+      rect:
+        serializedVersion: 2
+        x: 5201
+        y: 3176
+        width: 983
+        height: 1532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78e70d46b54c8500800000000000000
+      internalID: 399771116207859836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_23
+      rect:
+        serializedVersion: 2
+        x: 6398
+        y: 3176
+        width: 983
+        height: 1532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3af27b5959d718390800000000000000
+      internalID: -7817829396723060829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_24
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1655
+        width: 983
+        height: 1487
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5145ebd38c148b650800000000000000
+      internalID: 6248816811261711381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_25
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 1655
+        width: 983
+        height: 1487
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 850b5bdc2ed8c8390800000000000000
+      internalID: -7814715248141291432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_26
+      rect:
+        serializedVersion: 2
+        x: 2483
+        y: 1655
+        width: 983
+        height: 1487
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d6c3d44eecdb25f0800000000000000
+      internalID: -780287194503592231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_27
+      rect:
+        serializedVersion: 2
+        x: 3995
+        y: 1556
+        width: 983
+        height: 1451
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8d937e82c85ebe70800000000000000
+      internalID: 9132834686990785934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_28
+      rect:
+        serializedVersion: 2
+        x: 5201
+        y: 1556
+        width: 983
+        height: 1451
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc68f13e291007a0800000000000000
+      internalID: -6413098183178031917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_29
+      rect:
+        serializedVersion: 2
+        x: 6398
+        y: 1556
+        width: 983
+        height: 1451
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2e01a7fafd8c4d0800000000000000
+      internalID: -3113993197566500134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_30
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 179
+        width: 983
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd55147eab7b62520800000000000000
+      internalID: 2677029041889957343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_31
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 179
+        width: 983
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a805ad3536575880800000000000000
+      internalID: -8622328174910043999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orange (real)_32
+      rect:
+        serializedVersion: 2
+        x: 2483
+        y: 179
+        width: 983
+        height: 1352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86daf41e86ba8a40800000000000000
+      internalID: 5371306226946332303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      orange (real)_0: -5552376763192871310
+      orange (real)_1: -472228908536897489
+      orange (real)_10: -2399693751481134946
+      orange (real)_11: 6255073932895186894
+      orange (real)_12: -6051201042832869980
+      orange (real)_13: -214633636595461147
+      orange (real)_14: -7226921747565973597
+      orange (real)_15: 6351100684709677728
+      orange (real)_16: -1541643133638413637
+      orange (real)_17: -7034575625896780891
+      orange (real)_18: 1923921955131109771
+      orange (real)_19: -1593750225653790465
+      orange (real)_2: -7093583462565538646
+      orange (real)_20: -8559510918928383407
+      orange (real)_21: 4191010118265611730
+      orange (real)_22: 399771116207859836
+      orange (real)_23: -7817829396723060829
+      orange (real)_24: 6248816811261711381
+      orange (real)_25: -7814715248141291432
+      orange (real)_26: -780287194503592231
+      orange (real)_27: 9132834686990785934
+      orange (real)_28: -6413098183178031917
+      orange (real)_29: -3113993197566500134
+      orange (real)_3: -268290771991174594
+      orange (real)_30: 2677029041889957343
+      orange (real)_31: -8622328174910043999
+      orange (real)_32: 5371306226946332303
+      orange (real)_4: 4676993705602473512
+      orange (real)_5: -8053470482616152715
+      orange (real)_6: 2014241161919589581
+      orange (real)_7: 2988407518329788105
+      orange (real)_8: -2246847384187390647
+      orange (real)_9: -6412660091440019750
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

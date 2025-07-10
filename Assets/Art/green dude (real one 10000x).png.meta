@@ -1,0 +1,975 @@
+fileFormatVersion: 2
+guid: f5f4f81ca5400e1439413d34dbc938e9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5059879075793874216
+    second: green dude (real one 10000x)_0
+  - first:
+      213: -5799622820585960500
+    second: green dude (real one 10000x)_1
+  - first:
+      213: -3119686825452694028
+    second: green dude (real one 10000x)_2
+  - first:
+      213: -7816723555286949556
+    second: green dude (real one 10000x)_3
+  - first:
+      213: 7039410217122172256
+    second: green dude (real one 10000x)_4
+  - first:
+      213: -5125892413807643224
+    second: green dude (real one 10000x)_5
+  - first:
+      213: -1308377831218880442
+    second: green dude (real one 10000x)_6
+  - first:
+      213: 9183663706542467270
+    second: green dude (real one 10000x)_7
+  - first:
+      213: -277013831288947212
+    second: green dude (real one 10000x)_8
+  - first:
+      213: -8194135415795073598
+    second: green dude (real one 10000x)_9
+  - first:
+      213: -6999027217220837934
+    second: green dude (real one 10000x)_10
+  - first:
+      213: -6110871699265257302
+    second: green dude (real one 10000x)_11
+  - first:
+      213: -9053683535309529301
+    second: green dude (real one 10000x)_12
+  - first:
+      213: 2887761332296787089
+    second: green dude (real one 10000x)_13
+  - first:
+      213: 6382685669147845301
+    second: green dude (real one 10000x)_14
+  - first:
+      213: 3653831167788564855
+    second: green dude (real one 10000x)_15
+  - first:
+      213: 346727744126626461
+    second: green dude (real one 10000x)_16
+  - first:
+      213: 56761916637433281
+    second: green dude (real one 10000x)_17
+  - first:
+      213: -7023113472014269339
+    second: green dude (real one 10000x)_18
+  - first:
+      213: 7312896104564801758
+    second: green dude (real one 10000x)_19
+  - first:
+      213: 3621069581254801978
+    second: green dude (real one 10000x)_20
+  - first:
+      213: -5643411180866002773
+    second: green dude (real one 10000x)_21
+  - first:
+      213: 8225145972153634434
+    second: green dude (real one 10000x)_22
+  - first:
+      213: -2051706805188695715
+    second: green dude (real one 10000x)_23
+  - first:
+      213: -4098506810545722330
+    second: green dude (real one 10000x)_24
+  - first:
+      213: 4150031269766685158
+    second: green dude (real one 10000x)_25
+  - first:
+      213: 5961597921053027684
+    second: green dude (real one 10000x)_26
+  - first:
+      213: -5662151867096012899
+    second: green dude (real one 10000x)_27
+  - first:
+      213: -2173640167524493009
+    second: green dude (real one 10000x)_28
+  - first:
+      213: -2258418090242257989
+    second: green dude (real one 10000x)_29
+  - first:
+      213: -3575550392981376430
+    second: green dude (real one 10000x)_30
+  - first:
+      213: 7082180116177203407
+    second: green dude (real one 10000x)_31
+  - first:
+      213: -668053935059726122
+    second: green dude (real one 10000x)_32
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_0
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 8549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d2dfd8f9c2b7c9b0800000000000000
+      internalID: -5059879075793874216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_1
+      rect:
+        serializedVersion: 2
+        x: 1349
+        y: 8549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccb89bbb5c9938fa0800000000000000
+      internalID: -5799622820585960500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_2
+      rect:
+        serializedVersion: 2
+        x: 2649
+        y: 8549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f51d6e6c55a4b4d0800000000000000
+      internalID: -3119686825452694028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_3
+      rect:
+        serializedVersion: 2
+        x: 4249
+        y: 8549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4161bb575b658390800000000000000
+      internalID: -7816723555286949556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_4
+      rect:
+        serializedVersion: 2
+        x: 5549
+        y: 8549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06d82dbcb4201b160800000000000000
+      internalID: 7039410217122172256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_5
+      rect:
+        serializedVersion: 2
+        x: 6849
+        y: 8549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a5302ef10c2dd8b0800000000000000
+      internalID: -5125892413807643224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_6
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 6799
+        width: 1052
+        height: 1602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 640e33a6b45b7dde0800000000000000
+      internalID: -1308377831218880442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_7
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 6799
+        width: 1052
+        height: 1602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c86c15eb7de27f70800000000000000
+      internalID: 9183663706542467270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_8
+      rect:
+        serializedVersion: 2
+        x: 2699
+        y: 6799
+        width: 1052
+        height: 1602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fdf62c5369d72cf0800000000000000
+      internalID: -277013831288947212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_9
+      rect:
+        serializedVersion: 2
+        x: 4299
+        y: 6799
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cd3614f045984e80800000000000000
+      internalID: -8194135415795073598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_10
+      rect:
+        serializedVersion: 2
+        x: 5599
+        y: 6799
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ddd24014d57ede90800000000000000
+      internalID: -6999027217220837934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_11
+      rect:
+        serializedVersion: 2
+        x: 6899
+        y: 6799
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa08e49f092d13ba0800000000000000
+      internalID: -6110871699265257302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_12
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 5199
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f92190bcada5280800000000000000
+      internalID: -9053683535309529301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_13
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 5199
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 194a8a7b1a3631820800000000000000
+      internalID: 2887761332296787089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_14
+      rect:
+        serializedVersion: 2
+        x: 2699
+        y: 5199
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b2a8869ccad39850800000000000000
+      internalID: 6382685669147845301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_15
+      rect:
+        serializedVersion: 2
+        x: 4299
+        y: 5199
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771c949961405b230800000000000000
+      internalID: 3653831167788564855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_16
+      rect:
+        serializedVersion: 2
+        x: 5599
+        y: 5199
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9aa076db03dfc400800000000000000
+      internalID: 346727744126626461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_17
+      rect:
+        serializedVersion: 2
+        x: 6899
+        y: 5199
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cdc1f599a8a9c000800000000000000
+      internalID: 56761916637433281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_18
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 3549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564445bd183e88e90800000000000000
+      internalID: -7023113472014269339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_19
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 3549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed04ceff240ac7560800000000000000
+      internalID: 7312896104564801758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_20
+      rect:
+        serializedVersion: 2
+        x: 2749
+        y: 3549
+        width: 1052
+        height: 1402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a3aa1599f904230800000000000000
+      internalID: 3621069581254801978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_21
+      rect:
+        serializedVersion: 2
+        x: 4349
+        y: 3449
+        width: 1052
+        height: 1652
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba0a30b5e639ea1b0800000000000000
+      internalID: -5643411180866002773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_22
+      rect:
+        serializedVersion: 2
+        x: 5649
+        y: 3449
+        width: 1052
+        height: 1652
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28ec3f7dea6952270800000000000000
+      internalID: 8225145972153634434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_23
+      rect:
+        serializedVersion: 2
+        x: 6949
+        y: 3449
+        width: 1052
+        height: 1652
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59e975f78fd683e0800000000000000
+      internalID: -2051706805188695715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_24
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 1799
+        width: 1052
+        height: 1602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c27e745cd2f17c0800000000000000
+      internalID: -4098506810545722330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_25
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 1799
+        width: 1052
+        height: 1602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e1e439b37fd79930800000000000000
+      internalID: 4150031269766685158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_26
+      rect:
+        serializedVersion: 2
+        x: 2699
+        y: 1799
+        width: 1052
+        height: 1602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46da21a29b9dbb250800000000000000
+      internalID: 5961597921053027684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_27
+      rect:
+        serializedVersion: 2
+        x: 4349
+        y: 1699
+        width: 1052
+        height: 1552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d976d6150eefb61b0800000000000000
+      internalID: -5662151867096012899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_28
+      rect:
+        serializedVersion: 2
+        x: 5649
+        y: 1699
+        width: 1052
+        height: 1552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f299e29b8cda5d1e0800000000000000
+      internalID: -2173640167524493009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_29
+      rect:
+        serializedVersion: 2
+        x: 6949
+        y: 1699
+        width: 1052
+        height: 1552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbb4bc866bc78a0e0800000000000000
+      internalID: -2258418090242257989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_30
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 199
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25236d59cd7116ec0800000000000000
+      internalID: -3575550392981376430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_31
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 199
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc0b31cea45f84260800000000000000
+      internalID: 7082180116177203407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green dude (real one 10000x)_32
+      rect:
+        serializedVersion: 2
+        x: 2699
+        y: 199
+        width: 1052
+        height: 1452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d096fd4c789ab6f0800000000000000
+      internalID: -668053935059726122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      green dude (real one 10000x)_0: -5059879075793874216
+      green dude (real one 10000x)_1: -5799622820585960500
+      green dude (real one 10000x)_10: -6999027217220837934
+      green dude (real one 10000x)_11: -6110871699265257302
+      green dude (real one 10000x)_12: -9053683535309529301
+      green dude (real one 10000x)_13: 2887761332296787089
+      green dude (real one 10000x)_14: 6382685669147845301
+      green dude (real one 10000x)_15: 3653831167788564855
+      green dude (real one 10000x)_16: 346727744126626461
+      green dude (real one 10000x)_17: 56761916637433281
+      green dude (real one 10000x)_18: -7023113472014269339
+      green dude (real one 10000x)_19: 7312896104564801758
+      green dude (real one 10000x)_2: -3119686825452694028
+      green dude (real one 10000x)_20: 3621069581254801978
+      green dude (real one 10000x)_21: -5643411180866002773
+      green dude (real one 10000x)_22: 8225145972153634434
+      green dude (real one 10000x)_23: -2051706805188695715
+      green dude (real one 10000x)_24: -4098506810545722330
+      green dude (real one 10000x)_25: 4150031269766685158
+      green dude (real one 10000x)_26: 5961597921053027684
+      green dude (real one 10000x)_27: -5662151867096012899
+      green dude (real one 10000x)_28: -2173640167524493009
+      green dude (real one 10000x)_29: -2258418090242257989
+      green dude (real one 10000x)_3: -7816723555286949556
+      green dude (real one 10000x)_30: -3575550392981376430
+      green dude (real one 10000x)_31: 7082180116177203407
+      green dude (real one 10000x)_32: -668053935059726122
+      green dude (real one 10000x)_4: 7039410217122172256
+      green dude (real one 10000x)_5: -5125892413807643224
+      green dude (real one 10000x)_6: -1308377831218880442
+      green dude (real one 10000x)_7: 9183663706542467270
+      green dude (real one 10000x)_8: -277013831288947212
+      green dude (real one 10000x)_9: -8194135415795073598
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
