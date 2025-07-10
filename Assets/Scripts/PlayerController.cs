@@ -103,12 +103,15 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
                 Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-                if (hit.collider.CompareTag("Interactable"))
+                if (hit.collider is not null)
                 {
-                    _gameManager.interactionManager.StartInteractionRpc(
-                        _gameManager.characters.IndexOf(this), // TODO: cache this?
-                        _gameManager.characters.IndexOf(hit.transform.gameObject.GetComponentInParent<IGameCharacter>())
-                    );
+                    if (hit.collider.CompareTag("Interactable"))
+                    {
+                        _gameManager.interactionManager.StartInteractionRpc(
+                            _gameManager.characters.IndexOf(this), // TODO: cache this?
+                            _gameManager.characters.IndexOf(hit.transform.gameObject.GetComponentInParent<IGameCharacter>())
+                        );
+                    }
                 }
             }
         }

@@ -70,7 +70,11 @@ public class GameManager : NetworkBehaviour
                     
                     GUILayout.Label(interactionManager.CurrentInteraction.ToString());
                 }
-                
+
+                if (GUILayout.Button("Guess this NPC"))
+                {
+                    print(interactionManager.CurrentInteraction is { Type: InteractionType.PlayerPlayer } ? "You Win!" : "Wrong!");
+                }
             }
         }
 

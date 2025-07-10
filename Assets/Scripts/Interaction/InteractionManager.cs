@@ -150,6 +150,9 @@ namespace Interaction
         [Rpc(SendTo.ClientsAndHost)]
         private void StopInteractionClientRpc(int interactionIndex)
         {
+            // If host, this has already been removed
+            if (IsHost) return;
+            
             _interactions.RemoveAt(interactionIndex);
             _currentInteractionIndex = -1;
             IsInteracting = false;
