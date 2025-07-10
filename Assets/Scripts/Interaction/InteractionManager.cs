@@ -39,8 +39,6 @@ namespace Interaction
         {
             _gameManager = GetComponent<GameManager>();
 
-            _chatManager = _gameManager.chatManager;
-
             _interactionsData.OnValueChanged = (value, newValue) =>
             {
                 for (int i = 0; i < newValue.Count; i++)
@@ -56,6 +54,11 @@ namespace Interaction
                     }
                 }
             };
+        }
+
+        private void Start()
+        {
+            _chatManager = _gameManager.chatManager;
         }
 
         public void AddMessageToCurrentInteraction(string message)
