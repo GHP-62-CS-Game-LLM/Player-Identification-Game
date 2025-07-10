@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Chat;
-using Interactions;
+using Interaction;
 using JetBrains.Annotations;
 using Unity.Collections;
 using Unity.Netcode;
@@ -14,9 +14,10 @@ using UnityEngine;
 public class GameManager : NetworkBehaviour
 {
     [ReadOnly]
-    public NetworkVariable<bool> isInteracting;
+    public bool isInteracting;
     
-    public List<PlayerController> players = new();
+    public List<IGameCharacter> characters = new();
+    public PlayerController localPlayer;
 
     [HideInInspector]
     public ChatManager chatManager;
@@ -25,6 +26,7 @@ public class GameManager : NetworkBehaviour
 
     [CanBeNull]
     private IInteraction _interaction;
+    private NetworkVariable<List<InteractionHistory>> _interactionHistories = new(new List<InteractionHistory>());
     private string _message = string.Empty;
     private string _hostAddress = "127.0.0.1";
     
@@ -48,18 +50,13 @@ public class GameManager : NetworkBehaviour
             DisplayPlayingButtons();
         }
 
-        if (_interaction is not null)
+        if (_interaction is not null && isInteracting && IsClient)
         {
             _message = GUILayout.TextArea(_message);
 
             if (GUILayout.Button("Send"))
             {
-                _interaction.AddMessage(new Message
-                {
-                    Sender = GameCharacterType.Seeker,
-                    Reciever = GameCharacterType.Npc,
-                    Content = _message
-                });
+                _interaction.AddMessage(_message);
 
                 print(_interaction.ToString());
             }
@@ -70,26 +67,42 @@ public class GameManager : NetworkBehaviour
         }
         
         GUILayout.EndArea();
-        
     }
 
     [Rpc(SendTo.Server)]
-    public void StartInteractionRpc(GameCharacterType other)
+    public void StartInteractionRpc(int senderIndex, int receiverIndex)
     {
         print("Testing Interaction");
-        _interaction = other == GameCharacterType.Hider ? 
-            new PlayerPlayerInteraction() : 
-            new PlayerNpcInteraction(chatManager.MakeConversation(string.Empty));
-        isInteracting.Value = true;
-        
-        _interaction.AddMessage(new Message
+        PlayerController sender = (PlayerController)characters[senderIndex];
+        IGameCharacter receiver = characters[receiverIndex];
+
+        if (characters[receiverIndex].Type == GameCharacterType.Hider)
         {
-            Sender = GameCharacterType.Seeker,
-            Reciever = GameCharacterType.Npc,
-            Content = "Hello, how are you?"
-        });
+            _interaction = new PlayerPlayerInteraction(sender, (PlayerController)receiver);
+            _interactionHistories.Value.Add(_interaction.GetHistory());
+            _interactionHistories.CheckDirtyState();
+            StartPlayerPlayerClientInteractionRpc(receiverIndex, senderIndex);
+        }
+        else
+        {
+            _interaction = new PlayerNpcInteraction(chatManager.MakeConversation(string.Empty), sender, (NpcController)receiver);
+            _interactionHistories.Value.Add(_interaction.GetHistory());
+            _interactionHistories.CheckDirtyState();
+        }
+        
+        isInteracting = true;
 
         // TODO: good UI
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void StartPlayerPlayerClientInteractionRpc(int localPlayerIndex, int otherPlayerIndex)
+    {
+        if (characters.IndexOf(localPlayer) == localPlayerIndex)
+        {
+            _interaction = new PlayerPlayerInteraction(characters[localPlayerIndex] as PlayerController, characters[otherPlayerIndex] as PlayerController);
+            isInteracting = true;
+        }
     }
 
     private void DisplayConnectionButtons()
@@ -118,7 +131,10 @@ public class GameManager : NetworkBehaviour
 
         if (GUILayout.Button("Test Interaction"))
         {
-            StartInteractionRpc(GameCharacterType.Npc);
+            StartInteractionRpc(1, 0);
         }
+        
+        GUILayout.Label($"IsInteracting (local): {isInteracting}");
+        GUILayout.Label($"Interaction Histories Count: {_interactionHistories.Value.Count}");
     } 
 }

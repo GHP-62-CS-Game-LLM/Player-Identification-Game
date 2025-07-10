@@ -1,6 +1,5 @@
 using System;
 using Chat;
-using Interactions;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -62,13 +61,17 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
 
     public override void OnNetworkSpawn()
     {
-        if (IsOwner) SetRandomPosition();
+        if (IsOwner)
+        {
+            SetRandomPosition();
+            _gameManager.localPlayer = this;
+        }
 
-        if (_gameManager.players.Count >= 1)
+        if (_gameManager.characters.Count >= 1)
             Type = GameCharacterType.Hider;
         else Type = GameCharacterType.Seeker;
         
-        _gameManager.players.Add(this);
+        _gameManager.characters.Add(this);
         
         print($"Player Character Type: {Type}");
     }
@@ -83,7 +86,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
     private void Update()
     {
         if (!IsOwner) return;
-        if (_gameManager.isInteracting.Value) return;
+        if (_gameManager.isInteracting) return;
             
         Vector2 moveValue = _moveAction.ReadValue<Vector2>() * (moveSpeed * Time.deltaTime);
 
@@ -96,7 +99,10 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
 
             if (hit.collider.CompareTag("Interactable"))
             {
-                _gameManager.StartInteractionRpc(hit.transform.gameObject.GetComponent<IGameCharacter>().Type);
+                _gameManager.StartInteractionRpc(
+                    _gameManager.characters.IndexOf(this), // TODO: cache this?
+                    _gameManager.characters.IndexOf(hit.transform.gameObject.GetComponentInParent<IGameCharacter>())
+                );
             }
         }
     }

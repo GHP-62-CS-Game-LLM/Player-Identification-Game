@@ -7,12 +7,25 @@ public class NpcController : NetworkBehaviour, IGameCharacter
 {
     public GameCharacterType Type => GameCharacterType.Npc;
 
-    private SceneContextManager scm;
+    private SceneContextManager _scm;
+    private GameManager _gameManager;
 
     public void Awake()
     {
-        scm = FindAnyObjectByType<SceneContextManager>();
+        _scm = FindAnyObjectByType<SceneContextManager>();
+        _gameManager = FindAnyObjectByType<GameManager>();
     }
 
-    public string GetContext() => scm.GetContext(gameObject);
+    public override void OnNetworkSpawn()
+    {
+        _gameManager.characters.Add(this);
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (_gameManager.characters.Contains(this))
+            _gameManager.characters.Remove(this);
+    }
+
+    public string GetContext() => _scm.GetContext(gameObject);
 }
