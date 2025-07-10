@@ -10,31 +10,34 @@ using Unity.Properties;
 using UnityEngine;
 
 [RequireComponent(typeof(ChatManager))]
+[RequireComponent(typeof(InteractionManager))]
 
 public class GameManager : NetworkBehaviour
 {
-    [ReadOnly]
-    public bool isInteracting;
+    public static GameManager Instance;
     
     public List<IGameCharacter> characters = new();
     public PlayerController localPlayer;
 
     [HideInInspector]
     public ChatManager chatManager;
+    
+    public InteractionManager interactionManager;
 
     private NetworkManager _networkManager;
 
-    [CanBeNull]
-    private IInteraction _interaction;
-    private NetworkVariable<List<InteractionHistory>> _interactionHistories = new(new List<InteractionHistory>());
     private string _message = string.Empty;
+
     private string _hostAddress = "127.0.0.1";
-    
 
     private void Awake()
     {
+        Instance = this;
+        
         _networkManager = FindAnyObjectByType<NetworkManager>();
         chatManager = GetComponent<ChatManager>();
+        
+        interactionManager = GetComponent<InteractionManager>();
     }
 
     private void OnGUI()
@@ -48,61 +51,30 @@ public class GameManager : NetworkBehaviour
         else
         {
             DisplayPlayingButtons();
-        }
-
-        if (_interaction is not null && isInteracting && IsClient)
-        {
-            _message = GUILayout.TextArea(_message);
-
-            if (GUILayout.Button("Send"))
+            
+            if (interactionManager.IsInteracting && IsClient)
             {
-                _interaction.AddMessage(_message);
+                _message = GUILayout.TextArea(_message);
 
-                print(_interaction.ToString());
+                if (GUILayout.Button("Send"))
+                {
+                    interactionManager.AddMessageToCurrentInteraction(_message);
+                }
+
+                if (interactionManager.CurrentInteraction != null)
+                {
+                    if (GUILayout.Button("Print Interaction"))
+                    {
+                        print($"Interaction:\n{interactionManager.CurrentInteraction.ToString()}");
+                    }
+                    
+                    GUILayout.Label(interactionManager.CurrentInteraction.ToString());
+                }
+                
             }
-
-            if (GUILayout.Button("Print Interaction")) print(_interaction.ToString());
-
-            GUILayout.Label(_interaction.ToString());
         }
-        
+
         GUILayout.EndArea();
-    }
-
-    [Rpc(SendTo.Server)]
-    public void StartInteractionRpc(int senderIndex, int receiverIndex)
-    {
-        print("Testing Interaction");
-        PlayerController sender = (PlayerController)characters[senderIndex];
-        IGameCharacter receiver = characters[receiverIndex];
-
-        if (characters[receiverIndex].Type == GameCharacterType.Hider)
-        {
-            _interaction = new PlayerPlayerInteraction(sender, (PlayerController)receiver);
-            _interactionHistories.Value.Add(_interaction.GetHistory());
-            _interactionHistories.CheckDirtyState();
-            StartPlayerPlayerClientInteractionRpc(receiverIndex, senderIndex);
-        }
-        else
-        {
-            _interaction = new PlayerNpcInteraction(chatManager.MakeConversation(string.Empty), sender, (NpcController)receiver);
-            _interactionHistories.Value.Add(_interaction.GetHistory());
-            _interactionHistories.CheckDirtyState();
-        }
-        
-        isInteracting = true;
-
-        // TODO: good UI
-    }
-
-    [Rpc(SendTo.ClientsAndHost)]
-    private void StartPlayerPlayerClientInteractionRpc(int localPlayerIndex, int otherPlayerIndex)
-    {
-        if (characters.IndexOf(localPlayer) == localPlayerIndex)
-        {
-            _interaction = new PlayerPlayerInteraction(characters[localPlayerIndex] as PlayerController, characters[otherPlayerIndex] as PlayerController);
-            isInteracting = true;
-        }
     }
 
     private void DisplayConnectionButtons()
@@ -129,12 +101,12 @@ public class GameManager : NetworkBehaviour
             foreach (ulong uid in uids) print($"UID: {uid}");
         }
 
-        if (GUILayout.Button("Test Interaction"))
+        if (characters.Count >= 3 && GUILayout.Button("Test Interaction"))
         {
-            StartInteractionRpc(1, 0);
+            interactionManager.StartInteractionRpc(0, 2);
         }
         
-        GUILayout.Label($"IsInteracting (local): {isInteracting}");
-        GUILayout.Label($"Interaction Histories Count: {_interactionHistories.Value.Count}");
+        GUILayout.Label($"IsInteracting (local): {interactionManager.IsInteracting}");
+        GUILayout.Label($"Interactions Len: {interactionManager.Len}");
     } 
 }

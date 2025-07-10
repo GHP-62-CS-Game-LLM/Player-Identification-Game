@@ -7,15 +7,15 @@ using Unity.Netcode;
 
 namespace Interaction 
 {
-    public class PlayerNpcInteraction : IInteraction
+    public class PlayerNpcInteraction : IInteraction, IEquatable<PlayerNpcInteraction>
     {
         public InteractionType Type => InteractionType.PlayerNpc;
-        public Action<Message> OnMessageAdd { get; set; } = _ => { };
 
-        public readonly PlayerController Player;
-        public readonly NpcController Npc;
+        public PlayerController Player;
+        public NpcController Npc;
 
-        private readonly InteractionHistory _history = new() { Messages = new List<Message>() };
+        private List<Message> Messages { get; set; } = new();
+        
         private readonly Conversation _conversation;
 
         public PlayerNpcInteraction(Conversation conversation, PlayerController player, NpcController npc)
@@ -29,8 +29,7 @@ namespace Interaction
         public async void AddMessage(Message message)
         {
             Debug.Log("PlayerNpc Interaction");
-            _history.Messages.Add(message);
-            OnMessageAdd(message);
+            Messages.Add(message);
 
             // Generate and add response
             if (message.Receiver == GameCharacterType.Npc)
@@ -39,7 +38,7 @@ namespace Interaction
                 Debug.Log("Waiting");
                 Debug.Log($"Result:\n{response}");
 
-                _history.Messages.Add(new Message
+                Messages.Add(new Message
                 {
                     Sender = GameCharacterType.Npc,
                     Receiver = GameCharacterType.Seeker,
@@ -51,9 +50,20 @@ namespace Interaction
         public void AddMessage(string message) =>
             AddMessage(new Message { Sender = Player.Type, Receiver = Npc.Type, Content = message });
 
-        public List<Message> GetAllMessages() => _history.Messages;
-        public InteractionHistory GetHistory() => _history;
+        public List<Message> GetAllMessages() => Messages;
 
+        public bool Equals(IInteraction other) =>
+            other is not null &&
+            Type == other.Type &&
+            Equals(other as PlayerNpcInteraction);
+
+        public bool Equals(PlayerNpcInteraction other) =>
+            other is not null &&
+            Type == other.Type &&
+            Player.Equals(other.Player) &&
+            Npc.Equals(other.Npc) &&
+            Messages == other.Messages;
+        
         public override string ToString()
         {
             StringBuilder sb = new();
@@ -62,5 +72,45 @@ namespace Interaction
 
             return sb.ToString();
         }
+
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            
+            if (serializer.IsWriter)
+            {
+                serializer.GetFastBufferWriter().WriteValueSafe(Type);
+                serializer.GetFastBufferWriter().WriteValue(Player.Index);
+                serializer.GetFastBufferWriter().WriteValue(Npc.Index);
+                serializer.GetFastBufferWriter().WriteValue(Messages.Count);
+                foreach (Message message in Messages) 
+                    serializer.GetFastBufferWriter().WriteValueSafe(message);
+            }
+            else
+            {
+                serializer.GetFastBufferReader().ReadValueSafe(out InteractionType type);
+                serializer.GetFastBufferReader().ReadValueSafe(out int playerIndex);
+                serializer.GetFastBufferReader().ReadValueSafe(out int npcIndex);
+                serializer.GetFastBufferReader().ReadValueSafe(out int messagesCount);
+                
+                Player = GameManager.Instance.characters[playerIndex] as PlayerController;
+                Npc = GameManager.Instance.characters[npcIndex] as NpcController;
+                
+                Messages = new List<Message>(messagesCount);
+
+                for (int i = 0; i < messagesCount; i++)
+                {
+                    serializer.GetFastBufferReader().ReadValueSafe(out Message message);
+                    Messages.Add(message);
+                }
+            }
+        }
+
+        public SerializableInteraction GetSerializable() => new()
+        {
+            Type = Type,
+            SenderIndex = Player.Index,
+            ReceiverIndex = Npc.Index,
+            Messages = Messages.ToArray()
+        };
     }
 }

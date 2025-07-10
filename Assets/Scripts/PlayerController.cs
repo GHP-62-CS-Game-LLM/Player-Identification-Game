@@ -41,6 +41,8 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
     
     [Header("Movement")]
     public float moveSpeed = 5.0f;
+
+    public int Index { get; set; } = -1;
     
     private InputAction _moveAction;
     private InputAction _interactAction;
@@ -72,6 +74,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
         else Type = GameCharacterType.Seeker;
         
         _gameManager.characters.Add(this);
+        Index = _gameManager.characters.Count - 1;
         
         print($"Player Character Type: {Type}");
     }
@@ -86,7 +89,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
     private void Update()
     {
         if (!IsOwner) return;
-        if (_gameManager.isInteracting) return;
+        if (_gameManager.interactionManager.IsInteracting) return;
             
         Vector2 moveValue = _moveAction.ReadValue<Vector2>() * (moveSpeed * Time.deltaTime);
 
@@ -99,11 +102,12 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
 
             if (hit.collider.CompareTag("Interactable"))
             {
-                _gameManager.StartInteractionRpc(
+                _gameManager.interactionManager.StartInteractionRpc(
                     _gameManager.characters.IndexOf(this), // TODO: cache this?
                     _gameManager.characters.IndexOf(hit.transform.gameObject.GetComponentInParent<IGameCharacter>())
                 );
             }
         }
     }
+    public bool Equals(IGameCharacter other) => other is not null && Type == other.Type && Index == other.Index;
 }
