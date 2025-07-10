@@ -69,6 +69,10 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
         else Type = GameCharacterType.Seeker;
         
         _gameManager.players.Add(this);
+
+        GameObject body = _gameManager.npcSpawner.PickRandomToSpawn();
+        Sprite sprite = body.GetComponent<SpriteRenderer>().sprite;
+        GetComponents<SpriteRenderer>()[1].sprite = sprite;
         
         print($"Player Character Type: {Type}");
     }

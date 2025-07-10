@@ -10,6 +10,7 @@ using Unity.Properties;
 using UnityEngine;
 
 [RequireComponent(typeof(ChatManager))]
+[RequireComponent(typeof(NpcSpawner))]
 
 public class GameManager : NetworkBehaviour
 {
@@ -20,6 +21,8 @@ public class GameManager : NetworkBehaviour
 
     [HideInInspector]
     public ChatManager chatManager;
+    [HideInInspector]
+    public NpcSpawner npcSpawner;
 
     private NetworkManager _networkManager;
 
@@ -33,6 +36,7 @@ public class GameManager : NetworkBehaviour
     {
         _networkManager = FindAnyObjectByType<NetworkManager>();
         chatManager = GetComponent<ChatManager>();
+        npcSpawner = GetComponent<NpcSpawner>();
     }
 
     private void OnGUI()
