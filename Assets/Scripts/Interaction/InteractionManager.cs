@@ -21,12 +21,13 @@ namespace Interaction
         
         private int _currentInteractionIndex;
         // Sorry..
-        [CanBeNull] public IInteraction CurrentInteraction => _currentInteractionIndex < _interactions.Value.Count
-            ? _interactions.Value[_currentInteractionIndex].ToInteraction()
+        [CanBeNull] public IInteraction CurrentInteraction => _currentInteractionIndex < _interactions.Count
+            ? _interactions[_currentInteractionIndex]
             : null;
 
-        public int Len => _interactions.Value.Count;
-        private NetworkVariable<List<SerializableInteraction>> _interactions = new(new List<SerializableInteraction>());
+        public int InteractionsLength => _interactions.Count;
+        private List<IInteraction> _interactions = new();
+        private NetworkVariable<List<InteractionData>> _interactionsData = new(new List<InteractionData>());
 
         public List<Conversation> Conversations = new();
 
@@ -39,14 +40,30 @@ namespace Interaction
             _gameManager = GetComponent<GameManager>();
 
             _chatManager = _gameManager.chatManager;
+
+            _interactionsData.OnValueChanged = (value, newValue) =>
+            {
+                for (int i = 0; i < newValue.Count; i++)
+                {
+                    if (i < _interactions.Count)
+                    {
+                        if (!_interactions[i].Data.Equals(newValue[i]))
+                            _interactions[i].Data = newValue[i];
+                    }
+                    else
+                    {
+                        _interactions.Add(IInteraction.FromData(newValue[i]));
+                    }
+                }
+            };
         }
 
         public void AddMessageToCurrentInteraction(string message)
         {
             if (!IsInteracting) return;
 
-            IInteraction interaction = _interactions.Value[_currentInteractionIndex].ToInteraction();
-            RemoveInteractionAtRpc(_currentInteractionIndex);
+            IInteraction interaction = _interactions[_currentInteractionIndex];
+            //RemoveInteractionAtRpc(_currentInteractionIndex);
             if (LocalPlayer.Type == GameCharacterType.Seeker)
             {
                 interaction.AddMessage(new Message
@@ -65,10 +82,8 @@ namespace Interaction
                     Content = message
                 });
             }
-            
-            // _interactions.Value.Add(interaction.GetSerializable());
-            // _interactions.CheckDirtyState();
-            AddInteractionRpc(interaction.GetSerializable());
+
+            SetInteractionDataAtRpc(_currentInteractionIndex, interaction.Data);
         }
 
 
@@ -85,28 +100,32 @@ namespace Interaction
                 
                 Conversations.Add(_chatManager.MakeConversation(string.Empty));
                 
-                 _interactions.Value.Add(new PlayerNpcInteraction(
+                 _interactions.Add(new PlayerNpcInteraction(
                     Conversations[^1],
                     sender as PlayerController, 
                     receiver as NpcController
-                ).GetSerializable());
+                ));
+                 
+                _interactionsData.Value.Add(_interactions[^1].Data);
             }
             else if (sender.Type == GameCharacterType.Seeker && receiver.Type == GameCharacterType.Hider)
             {
                 Assert.IsTrue(sender.GetType() == typeof(PlayerController));
                 Assert.IsTrue(receiver.GetType() == typeof(PlayerController));
 
-                _interactions.Value.Add(new PlayerPlayerInteraction(
+                _interactions.Add(new PlayerPlayerInteraction(
                     sender as PlayerController, 
                     receiver as PlayerController
-                ).GetSerializable());
+                ));
+                
+                _interactionsData.Value.Add(_interactions[^1].Data);
             }
             
-            _currentInteractionIndex = _interactions.Value.Count - 1;
+            _currentInteractionIndex = _interactions.Count - 1;
             IsInteracting = true;
-            _interactions.CheckDirtyState();
+            _interactionsData.CheckDirtyState();
             
-            StartInteractionClientsRpc(senderIndex, receiverIndex, _interactions.Value.Count - 1);
+            StartInteractionClientsRpc(senderIndex, receiverIndex, _interactions.Count - 1);
         }
 
         [Rpc(SendTo.ClientsAndHost)]
@@ -125,26 +144,37 @@ namespace Interaction
         }
 
         [Rpc(SendTo.Server)]
-        private void AddInteractionRpc(SerializableInteraction interaction)
+        private void AddInteractionDataRpc(InteractionData interaction)
         {
-            _interactions.Value.Add(interaction);
-            _interactions.CheckDirtyState();
+            _interactions.Add(IInteraction.FromData(interaction));
+            _interactionsData.Value.Add(_interactions[^1].Data);
+            _interactionsData.CheckDirtyState();
         }
 
         [Rpc(SendTo.Server)]
-        private void RemoveInteractionAtRpc(int index)
+        private void RemoveInteractionDataAtRpc(int index)
         {
-            _interactions.Value.RemoveAt(index);
-            _interactions.CheckDirtyState();
+            _interactions.RemoveAt(index);
+            _interactionsData.Value.RemoveAt(index);
+            _interactionsData.CheckDirtyState();
+        }
+
+        [Rpc(SendTo.Server)]
+        private void SetInteractionDataAtRpc(int index, InteractionData data)
+        {
+            _interactions[index].Data = data;
+            _interactionsData.Value[index] = data;
+            _interactionsData.CheckDirtyState();
         }
 
         public void Update()
         {
             if (_shouldCreateInteraction && _createInteractionInFrames > 0) _createInteractionInFrames--;
             
-            if (_shouldCreateInteraction && _createInteractionInFrames <= 0)
+            if (_shouldCreateInteraction && _pendingInteractionIndex < _interactionsData.Value.Count)
             {
                 _currentInteractionIndex = _pendingInteractionIndex;
+                _interactions.Insert(_currentInteractionIndex, IInteraction.FromData(_interactionsData.Value[_currentInteractionIndex]));
                 IsInteracting = true;
                 _createInteractionInFrames = -1;
                 _shouldCreateInteraction = false;

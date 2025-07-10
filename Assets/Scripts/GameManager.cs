@@ -107,6 +107,6 @@ public class GameManager : NetworkBehaviour
         }
         
         GUILayout.Label($"IsInteracting (local): {interactionManager.IsInteracting}");
-        GUILayout.Label($"Interactions Len: {interactionManager.Len}");
+        GUILayout.Label($"Interactions Len: {interactionManager.InteractionsLength}");
     } 
 }

@@ -1,43 +1,66 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 using Chat;
 using UnityEngine;
-using Unity.Netcode;
 
 namespace Interaction 
 {
     public class PlayerNpcInteraction : IInteraction, IEquatable<PlayerNpcInteraction>
     {
-        public InteractionType Type => InteractionType.PlayerNpc;
-
-        public PlayerController Player;
-        public NpcController Npc;
-
-        private List<Message> Messages { get; set; } = new();
-        
-        private readonly Conversation _conversation;
-
-        public PlayerNpcInteraction(Conversation conversation, PlayerController player, NpcController npc)
+        private InteractionData _data;
+        public InteractionData Data
         {
-            _conversation = conversation;
+            get => _data;
+            set => _data = value;
+        }
 
-            Player = player;
-            Npc = npc;
+        public InteractionType Type => _data.Type;
+
+        public PlayerController Sender
+        {
+            get => GameManager.Instance.characters[_data.SenderIndex] as PlayerController;
+            set => _data.SenderIndex = GameManager.Instance.characters.IndexOf(value);
+        }
+        public NpcController Receiver
+        {
+            get => GameManager.Instance.characters[_data.ReceiverIndex] as NpcController;
+            set => _data.ReceiverIndex = GameManager.Instance.characters.IndexOf(value);
+        }
+
+        public Message[] Messages => _data.Messages;
+
+        public Conversation Conversation
+        {
+            get => GameManager.Instance.interactionManager.Conversations[Data.ConversationIndex];
+            set => _data.ConversationIndex = GameManager.Instance.interactionManager.Conversations.IndexOf(value);
+        }
+
+        public PlayerNpcInteraction(Conversation conversation, PlayerController sender, NpcController receiver) : this(new InteractionData
+        {
+            Type = InteractionType.PlayerNpc,
+            SenderIndex = GameManager.Instance.characters.IndexOf(sender),
+            ReceiverIndex = GameManager.Instance.characters.IndexOf(receiver),
+            Messages = Array.Empty<Message>(),
+            ConversationIndex = GameManager.Instance.interactionManager.Conversations.IndexOf(conversation)
+        }) { }
+
+        public PlayerNpcInteraction(InteractionData data)
+        {
+            _data = data;
         }
 
         public async void AddMessage(Message message, bool autoGenerateResponse = false)
         {
-            Messages.Add(message);
+            _data.AddMessage(message);
 
             // Generate and add response
             if (autoGenerateResponse && message.Receiver == GameCharacterType.Npc)
             {
-                string response = await _conversation.Message(message.Content);
+                string response = await Conversation.Message(message.Content);
                 Debug.Log("Waiting");
                 Debug.Log($"Result:\n{response}");
 
-                Messages.Add(new Message
+                _data.AddMessage(new Message
                 {
                     Sender = GameCharacterType.Npc,
                     Receiver = GameCharacterType.Seeker,
@@ -47,9 +70,9 @@ namespace Interaction
         }
 
         public void AddMessage(string message, bool autoGenerateResponse = false) =>
-           AddMessage(new Message { Sender = Player.Type, Receiver = Npc.Type, Content = message }, autoGenerateResponse);
+           AddMessage(new Message { Sender = Sender.Type, Receiver = Receiver.Type, Content = message }, autoGenerateResponse);
 
-        public List<Message> GetAllMessages() => Messages;
+        public Message[] GetAllMessages() => _data.Messages;
 
         public bool Equals(IInteraction other) =>
             other is not null &&
@@ -59,8 +82,8 @@ namespace Interaction
         public bool Equals(PlayerNpcInteraction other) =>
             other is not null &&
             Type == other.Type &&
-            Player.Equals(other.Player) &&
-            Npc.Equals(other.Npc) &&
+            Sender.Equals(other.Sender) &&
+            Receiver.Equals(other.Receiver) &&
             Messages == other.Messages;
         
         public override string ToString()
@@ -71,45 +94,5 @@ namespace Interaction
 
             return sb.ToString();
         }
-
-        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
-        {
-            
-            if (serializer.IsWriter)
-            {
-                serializer.GetFastBufferWriter().WriteValueSafe(Type);
-                serializer.GetFastBufferWriter().WriteValue(Player.Index);
-                serializer.GetFastBufferWriter().WriteValue(Npc.Index);
-                serializer.GetFastBufferWriter().WriteValue(Messages.Count);
-                foreach (Message message in Messages) 
-                    serializer.GetFastBufferWriter().WriteValueSafe(message);
-            }
-            else
-            {
-                serializer.GetFastBufferReader().ReadValueSafe(out InteractionType type);
-                serializer.GetFastBufferReader().ReadValueSafe(out int playerIndex);
-                serializer.GetFastBufferReader().ReadValueSafe(out int npcIndex);
-                serializer.GetFastBufferReader().ReadValueSafe(out int messagesCount);
-                
-                Player = GameManager.Instance.characters[playerIndex] as PlayerController;
-                Npc = GameManager.Instance.characters[npcIndex] as NpcController;
-                
-                Messages = new List<Message>(messagesCount);
-
-                for (int i = 0; i < messagesCount; i++)
-                {
-                    serializer.GetFastBufferReader().ReadValueSafe(out Message message);
-                    Messages.Add(message);
-                }
-            }
-        }
-
-        public SerializableInteraction GetSerializable() => new()
-        {
-            Type = Type,
-            SenderIndex = Player.Index,
-            ReceiverIndex = Npc.Index,
-            Messages = Messages.ToArray()
-        };
     }
 }

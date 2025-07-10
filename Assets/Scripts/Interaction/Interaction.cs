@@ -42,65 +42,46 @@ namespace Interaction
         PlayerPlayer
     }
 
-    public interface IInteraction : INetworkSerializable, IEquatable<IInteraction>
+    public interface IInteraction : IEquatable<IInteraction>
     {
-        public InteractionType Type { get; }
+        public static IInteraction FromData(InteractionData data)
+        {
+            return data.Type switch
+            {
+                InteractionType.PlayerPlayer => new PlayerPlayerInteraction(data),
+                InteractionType.PlayerNpc => new PlayerNpcInteraction(data),
+                _ => throw new ArgumentException("Invalid InteractionData Type!")
+            };
+        }
+        
+        public InteractionData Data { get; set; }
+        
+        public InteractionType Type => Data.Type;
         
         public void AddMessage(Message message, bool autoGenerateResponse = false);
         public void AddMessage(string message, bool autoGenerateResponse = false);
 
-        public List<Message> GetAllMessages();
-
-        public SerializableInteraction GetSerializable();
+        public Message[] GetAllMessages();
     }
 
-    public struct SerializableInteraction : INetworkSerializable, IEquatable<SerializableInteraction>
+    public struct InteractionData : INetworkSerializable, IEquatable<InteractionData>
     {
-        public static PlayerPlayerInteraction ToPlayerPlayerInteraction(SerializableInteraction serializable)
-        {
-            Assert.IsTrue(serializable.Type == InteractionType.PlayerPlayer);
-            
-            PlayerPlayerInteraction interaction = new(
-                (PlayerController)GameManager.Instance.characters[serializable.SenderIndex],
-                (PlayerController)GameManager.Instance.characters[serializable.ReceiverIndex]);
-
-            foreach (Message message in serializable.Messages) interaction.AddMessage(message);
-
-            return interaction;
-        }
-
-        public static PlayerNpcInteraction ToPlayerNpcInteraction(SerializableInteraction serializable)
-        {
-            Assert.IsTrue(serializable.Type == InteractionType.PlayerNpc);
-
-            PlayerNpcInteraction interaction = new(
-                GameManager.Instance.interactionManager.Conversations[serializable.ConversationIndex],
-                (PlayerController)GameManager.Instance.characters[serializable.SenderIndex],
-                (NpcController)GameManager.Instance.characters[serializable.ReceiverIndex]
-            );
-            
-            foreach (Message message in serializable.Messages) interaction.AddMessage(message);
-
-            return interaction;
-        }
-
-        public static IInteraction ToInteraction(SerializableInteraction serializable) =>
-            serializable.Type == InteractionType.PlayerPlayer
-                ? ToPlayerPlayerInteraction(serializable)
-                : ToPlayerNpcInteraction(serializable);
-
-        public PlayerPlayerInteraction ToPlayerPlayerInteraction() => ToPlayerPlayerInteraction(this);
-        public PlayerNpcInteraction ToPlayerNpcInteraction() => ToPlayerNpcInteraction(this);
-        public IInteraction ToInteraction() => ToInteraction(this);
-
-        //public static PlayerNpcInteraction ToPlayerNpcInteraction(SerializableInteraction interaction) => new();
-        
         public InteractionType Type { get; set; }
         public int SenderIndex { get; set; }
         public int ReceiverIndex { get; set; }
         public Message[] Messages { get; set; }
         
         public int ConversationIndex { get; set; }
+
+        public void AddMessage(Message message)
+        {
+            Message[] messages = new Message[Messages.Length + 1];
+            Array.Copy(Messages, messages, Messages.Length);
+
+            messages[^1] = message;
+
+            Messages = messages;
+        }
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
@@ -135,7 +116,7 @@ namespace Interaction
                 }
             }
         }
-        public bool Equals(SerializableInteraction other) =>
+        public bool Equals(InteractionData other) =>
             Type == other.Type &&
             SenderIndex == other.SenderIndex && 
             ReceiverIndex == other.ReceiverIndex &&

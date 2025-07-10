@@ -9,26 +9,47 @@ namespace Interaction
 {
     public class PlayerPlayerInteraction : IInteraction, IEquatable<PlayerPlayerInteraction>
     {
-        public InteractionType Type => InteractionType.PlayerPlayer;
-
-        public PlayerController Sender;
-        public PlayerController Receiver;
-
-        private List<Message> Messages { get; set; } = new();
-
-
-        public PlayerPlayerInteraction(PlayerController sender, PlayerController receiver)
+        private InteractionData _data;
+        public InteractionData Data 
         {
-            Sender = sender;
-            Receiver = receiver;
+            get => _data;
+            set => _data = value;
+        }
+
+        public InteractionType Type => _data.Type;
+
+        public PlayerController Sender
+        {
+            get => GameManager.Instance.characters[_data.SenderIndex] as PlayerController;
+            set => _data.SenderIndex = GameManager.Instance.characters.IndexOf(value);
+        }
+        public PlayerController Receiver
+        {
+            get => GameManager.Instance.characters[_data.ReceiverIndex] as PlayerController;
+            set => _data.ReceiverIndex = GameManager.Instance.characters.IndexOf(value);
+        }
+
+        public Message[] Messages => _data.Messages;
+
+        public PlayerPlayerInteraction(PlayerController sender, PlayerController receiver) : this(new InteractionData
+        {
+            Type = InteractionType.PlayerPlayer,
+            SenderIndex = GameManager.Instance.characters.IndexOf(sender),
+            ReceiverIndex = GameManager.Instance.characters.IndexOf(receiver),
+            Messages = Array.Empty<Message>()
+        }) { }
+
+        public PlayerPlayerInteraction(InteractionData data)
+        {
+            _data = data;
         }
     
-        public void AddMessage(Message message, bool autoGenerateResponse = false) => Messages.Add(message);
+        public void AddMessage(Message message, bool autoGenerateResponse = false) => _data.AddMessage(message);
 
         public void AddMessage(string message, bool autoGenerateResponse = false) =>
             AddMessage(new Message { Sender = Sender.Type, Receiver = Receiver.Type, Content = message });
 
-        public List<Message> GetAllMessages() => Messages;
+        public Message[] GetAllMessages() => _data.Messages;
 
         public bool Equals(IInteraction other) =>
             other is not null &&
@@ -50,44 +71,5 @@ namespace Interaction
 
             return sb.ToString();
         }
-        
-        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
-        {
-            if (serializer.IsWriter)
-            {
-                serializer.GetFastBufferWriter().WriteValueSafe(Type);
-                serializer.GetFastBufferWriter().WriteValue(Sender.Index);
-                serializer.GetFastBufferWriter().WriteValue(Receiver.Index);
-                serializer.GetFastBufferWriter().WriteValue(Messages.Count);
-                foreach (Message message in Messages) 
-                    serializer.GetFastBufferWriter().WriteValueSafe(message);
-            }
-            else
-            {
-                serializer.GetFastBufferReader().ReadValueSafe(out InteractionType type);
-                serializer.GetFastBufferReader().ReadValueSafe(out int senderIndex);
-                serializer.GetFastBufferReader().ReadValueSafe(out int receiverIndex);
-                serializer.GetFastBufferReader().ReadValueSafe(out int messagesCount);
-                
-                Sender = GameManager.Instance.characters[senderIndex] as PlayerController;
-                Receiver = GameManager.Instance.characters[receiverIndex] as PlayerController;
-                
-                Messages = new List<Message>(messagesCount);
-
-                for (int i = 0; i < messagesCount; i++)
-                {
-                    serializer.GetFastBufferReader().ReadValueSafe(out Message message);
-                    Messages.Add(message);
-                }
-            }
-        }
-
-        public SerializableInteraction GetSerializable() => new()
-        {
-            Type = Type,
-            SenderIndex = Sender.Index,
-            ReceiverIndex = Receiver.Index,
-            Messages = Messages.ToArray()
-        };
     }
 }
