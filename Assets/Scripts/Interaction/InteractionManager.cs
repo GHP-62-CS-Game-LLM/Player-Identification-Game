@@ -128,6 +128,33 @@ namespace Interaction
             StartInteractionClientsRpc(senderIndex, receiverIndex, _interactions.Count - 1);
         }
 
+        public void StopCurrentInteraction()
+        {
+            if (!IsClient) return;
+            
+            StopInteractionRpc(_currentInteractionIndex);
+        }
+
+        [Rpc(SendTo.Server)]
+        public void StopInteractionRpc(int interactionIndex)
+        {
+            _interactions.RemoveAt(interactionIndex);
+            _interactionsData.Value.RemoveAt(interactionIndex);
+            _interactionsData.CheckDirtyState();
+            _currentInteractionIndex = -1;
+            IsInteracting = false;
+            
+            StopInteractionClientRpc(interactionIndex);
+        }
+
+        [Rpc(SendTo.ClientsAndHost)]
+        private void StopInteractionClientRpc(int interactionIndex)
+        {
+            _interactions.RemoveAt(interactionIndex);
+            _currentInteractionIndex = -1;
+            IsInteracting = false;
+        }
+
         [Rpc(SendTo.ClientsAndHost)]
         private void StartInteractionClientsRpc(int senderIndex, int receiverIndex, int interactionIndex)
         {

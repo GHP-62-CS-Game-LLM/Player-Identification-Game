@@ -46,6 +46,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
     
     private InputAction _moveAction;
     private InputAction _interactAction;
+    private InputAction _backAction;
     
     private GameManager _gameManager;
     //private ChatManager _chatManager;
@@ -54,6 +55,7 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
     {
         _moveAction = InputSystem.actions.FindAction("Move");
         _interactAction = InputSystem.actions.FindAction("Interact");
+        _backAction = InputSystem.actions.FindAction("Back");
         
         _gameManager = FindAnyObjectByType<GameManager>();
         //_chatManager = _gameManager.chatManager;
@@ -89,24 +91,31 @@ public class PlayerController : NetworkBehaviour, IGameCharacter
     private void Update()
     {
         if (!IsOwner) return;
-        if (_gameManager.interactionManager.IsInteracting) return;
-            
-        Vector2 moveValue = _moveAction.ReadValue<Vector2>() * (moveSpeed * Time.deltaTime);
 
-        transform.position += new Vector3(moveValue.x, moveValue.y, 0.0f);
-
-        if (_interactAction.WasPressedThisFrame())
+        if (!_gameManager.interactionManager.IsInteracting)
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+            Vector2 moveValue = _moveAction.ReadValue<Vector2>() * (moveSpeed * Time.deltaTime);
 
-            if (hit.collider.CompareTag("Interactable"))
+            transform.position += new Vector3(moveValue.x, moveValue.y, 0.0f);
+            
+            if (_interactAction.WasPressedThisFrame())
             {
-                _gameManager.interactionManager.StartInteractionRpc(
-                    _gameManager.characters.IndexOf(this), // TODO: cache this?
-                    _gameManager.characters.IndexOf(hit.transform.gameObject.GetComponentInParent<IGameCharacter>())
-                );
+                Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+                if (hit.collider.CompareTag("Interactable"))
+                {
+                    _gameManager.interactionManager.StartInteractionRpc(
+                        _gameManager.characters.IndexOf(this), // TODO: cache this?
+                        _gameManager.characters.IndexOf(hit.transform.gameObject.GetComponentInParent<IGameCharacter>())
+                    );
+                }
             }
+        }
+
+        if (_backAction.WasPressedThisFrame() && _gameManager.interactionManager.IsInteracting)
+        {
+            _gameManager.interactionManager.StopCurrentInteraction();
         }
     }
     public bool Equals(IGameCharacter other) => other is not null && Type == other.Type && Index == other.Index;

@@ -9,13 +9,13 @@ namespace Chat
 {
     public class ChatManager : MonoBehaviour
     {
-        public string host = "http://127.0.0.1:11434";
+        public string host = "https://6eebc600ac38.ngrok-free.app";
         //public string local = "http://127.0.0.1:11434";
         
         public SceneContextManager scm;
 
         private readonly OllamaApiClient _ollama;
-        private const string Model = "phi4-mini";
+        private const string Model = "tinyllama-short";
 
         public ChatManager()
         {
